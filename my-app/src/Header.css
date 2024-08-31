@@ -1,0 +1,26 @@
+header{
+    background-color: #843ab8;
+}
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0px 20px 0px 20px;
+}
+
+.header-text{
+    font-size: x-large;
+}
+
+.login-container{
+    width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 18px;
+}
+
+.Login-btn{
+    background-color: inherit;
+    border:none;
+}
