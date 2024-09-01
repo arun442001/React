@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import "./Calendar.css"
 
@@ -20,6 +20,7 @@ const Calendar=({showCalendar,handleShowCalendar,handleDueDate,itemid})=>{
         "December"
       ];
     const [currentDate,setCurrentDate]=useState(new Date());
+    const calendarRef = useRef(null); 
     const years = ()=>{
         let year = 2010;
         let yearArr = [];
@@ -57,8 +58,17 @@ const Calendar=({showCalendar,handleShowCalendar,handleDueDate,itemid})=>{
     }
 
     // useEffect(() => {
-    //     // console.log(currentDate); // This will log the updated date
-    // }, [currentDate]);
+        const handleClickOutside = (event) => {
+            if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+                handleShowCalendar(false);  
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+    //     return () => {
+    //         document.removeEventListener("mousedown", handleClickOutside);
+    //     }
+    // }, [handleShowCalendar]); 
 
     const renderCalendar=()=>{
         const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -98,7 +108,7 @@ const Calendar=({showCalendar,handleShowCalendar,handleDueDate,itemid})=>{
         )
     }
     return ((showCalendar == itemid) &&
-        <div className="calendar-container">
+        <div className="calendar-container" ref={calendarRef}>
             <div className="header-calendar">
                 <FaCaretLeft onClick={()=>changePreviousMonth()}/>
                 <div className="data-selector">

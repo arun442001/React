@@ -69,6 +69,7 @@ const Content = ()=>{
                 id: items.length + 1,
                 checked: false,
                 text: e.target.value,
+                duedate: "No due date"
             };
             setItems([...items, newItem]);
             e.target.value = "";

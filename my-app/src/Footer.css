@@ -15,3 +15,7 @@ footer{
     display: flex;
     justify-content: space-evenly;
 }
+
+footer :first-child{
+    margin-left: 20px;
+}
